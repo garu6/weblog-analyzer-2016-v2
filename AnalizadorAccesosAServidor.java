@@ -40,7 +40,7 @@ public class AnalizadorAccesosAServidor
         int valorADevolver = -1;
         
         if (!accesos.isEmpty()) {
-            int[] accesosPorHora = new int[24];
+            int[] accesosPorHora = new int[500];
     
             for (Acceso accesoActual : accesos) {
                 int horaAccesoActual = accesoActual.getHora();
