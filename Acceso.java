@@ -90,4 +90,43 @@ public class Acceso
         minutos = Integer.parseInt(caracter);
         return minutos;
     }
+    
+    
+    public String getUrl(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[8];
+        return resultado;
+    }
+    
+    
+    public String getIp(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[0];
+        return resultado;
+        
+        
+    }
+    
+    
+    
+    public int getHttp(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[9];
+        int codigo = Integer.parseInt(resultado);
+        return codigo;
+        
+        
+    }
 }
