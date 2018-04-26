@@ -66,4 +66,28 @@ public class Acceso
         minutos = Integer.parseInt(caracter);
         return minutos;
     }
+    
+    
+    public String getUrl(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[8];
+        return resultado;
+    }
+    
+    
+    public String Ip(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[0];
+        return resultado;
+        
+        
+    }
 }

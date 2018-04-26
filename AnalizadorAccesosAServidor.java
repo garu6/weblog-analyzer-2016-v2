@@ -1,20 +1,22 @@
 import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 public class AnalizadorAccesosAServidor
 {
     private ArrayList<Acceso> accesos;
-    
+    private boolean antes;
     
     public AnalizadorAccesosAServidor() 
     {
         accesos = new ArrayList<>();
+        antes = false;
     }
     
     
     public void analizarArchivoDeLog(String archivo)
     {
+        
         accesos.clear();
         File archivoALeer = new File(archivo);
         try {
@@ -27,7 +29,9 @@ public class AnalizadorAccesosAServidor
                 
                 accesos.add(accesoActual);
             }
+            antes = true;
             sc.close();
+            
         }
         catch (Exception e) {
             System.out.println("Ocurrio algun error al leer el archivo.");
@@ -66,7 +70,43 @@ public class AnalizadorAccesosAServidor
     
     public String paginaWebMasSolicitada() 
     {
-        return "";
+        String resultado = "";
+        
+        HashMap<String,Integer> webs = new HashMap<>();
+        if (antes){
+
+    
+            for (Acceso accesoActual : accesos) {
+               if (webs.containsKey(accesoActual.getUrl())){
+                   webs.replace(accesoActual.getUrl(),webs.get(accesoActual.getUrl())+1);
+                   
+                }else{
+                    webs.put(accesoActual.getUrl(),1);
+                    
+                }
+            }
+            
+            int maximoVisitas =0;
+            
+            for (String url : webs.keySet()){
+                if (webs.get(url) >= maximoVisitas){
+                    maximoVisitas = webs.get(url);
+                    resultado = url;
+                }
+                
+                
+            }
+            
+                           
+            
+            
+        }else{
+            System.out.println("no tengo datos con los que trabajar mete un archivo");
+            resultado=null;
+            
+        }
+        
+        return resultado;
     }
     
     public String clienteConMasAccesosExitosos()
