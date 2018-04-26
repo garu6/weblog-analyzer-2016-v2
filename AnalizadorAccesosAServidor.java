@@ -111,7 +111,44 @@ public class AnalizadorAccesosAServidor
     
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        String resultado = "";
+        
+        HashMap<String,Integer> ips = new HashMap<>();
+        if (antes){
+
+    
+            for (Acceso accesoActual : accesos) {
+               if  (accesoActual.getHttp() == 200){
+               if (ips.containsKey(accesoActual.getIp())){
+                   ips.replace(accesoActual.getIp(),ips.get(accesoActual.getIp())+1);
+                   
+                }else{
+                    ips.put(accesoActual.getIp(),1);
+                    
+                }
+            }
+            
+            int maximoAccesos =0;
+            resultado = "192.168.1.0";
+            for (String ip : ips.keySet()){
+                if (ip.compareTo(resultado) > 0 && ips.get(ip) >= maximoAccesos || ips.get(ip) > maximoAccesos){
+                    maximoAccesos = ips.get(ip);
+                    resultado = ip;
+                }
+                
+                
+            }
+            
+                           
+            
+        }  
+        }else{
+            System.out.println("no tengo datos con los que trabajar mete un archivo");
+            resultado=null;
+            
+        }
+        
+        return resultado;
     }
 
 

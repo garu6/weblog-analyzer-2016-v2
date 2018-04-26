@@ -79,7 +79,7 @@ public class Acceso
     }
     
     
-    public String Ip(){
+    public String getIp(){
         String resultado = "";
         
         
@@ -87,6 +87,21 @@ public class Acceso
         String [] separado = espacios.split(" ");
         resultado = separado[0];
         return resultado;
+        
+        
+    }
+    
+    
+    
+    public int getHttp(){
+        String resultado = "";
+        
+        
+        String espacios = cadena.replace("["," ").replace("]"," ");
+        String [] separado = espacios.split(" ");
+        resultado = separado[9];
+        int codigo = Integer.parseInt(resultado);
+        return codigo;
         
         
     }
